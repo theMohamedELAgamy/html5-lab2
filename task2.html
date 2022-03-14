@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=3, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        let db = window.openDatabase("onlinestore","1.0","onlinestore managment",1024*1024);
+        
+            db.transaction((tx)=>{
+            tx.executeSql("create table if not exists items (id int primary key,name varchar(200),amount int  )",[],(tx,result)=>{
+                tx.executeSql("insert into items  values (?,?,?)  ",[1,"mohamed",10],(tx,result)=>{
+                    tx.executeSql("insert into items  values (?,?,?)  ",[2,"ali",5])
+                },(tx,err)=>{
+                    console.log(err);
+                })
+            },(tx,err)=>{
+                console.log("error:",err);
+            })
+
+           
+
+            
+
+            
+
+            
+        })
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
